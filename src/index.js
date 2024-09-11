@@ -1,6 +1,6 @@
 const { error, log } = require('console');
 const { release } = require('process');
-
+const res = '';
 const axios = require('axios').default;
 const BASE_URL = `https://pixabay.com/api/`;
 
