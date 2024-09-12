@@ -1,8 +1,6 @@
-const { error, log } = require('console');
-const { release } = require('process');
-const res = '';
 const axios = require('axios').default;
 const BASE_URL = `https://pixabay.com/api/`;
+import { createMarkup } from './helpers/createMarkup';
 
 const options = {
   key: `45910491-7a91b10438fcd735159f6d92e`,
@@ -32,7 +30,7 @@ function onSearch(evt) {
   return data
     .then(data => {
       console.log(data);
-      createMarkup([data]);
+      createMarkup([data], refs.galarryEl);
     })
     .catch(error => console.log(error))
     .finally();
@@ -46,44 +44,4 @@ async function getSearchPixabay(inputValue) {
     throw new Error(response.status);
   }
   return response;
-}
-
-function createMarkup(data) {
-  const markup = data.map(({ data: { hits } }) =>
-    hits
-      .map(
-        ({
-          webformatURL,
-          largeImageURL,
-          tags,
-          likes,
-          views,
-          comments,
-          downloads,
-        }) => `<div class="photo-card">
-  <img src="${webformatURL}" alt="" loading="lazy" />
-  <div class="info">
-    <p class="info-item">
-      <b>Likes</b>
-      ${likes}
-    </p>
-    <p class="info-item">
-      <b>Views</b>
-      ${views}
-    </p>
-    <p class="info-item">
-      <b>Comments</b>
-      ${comments}
-    </p>
-    <p class="info-item">
-      <b>Downloads</b>
-      ${downloads}
-    </p>
-  </div>
-</div>`
-      )
-      .join('')
-  );
-
-  return (refs.galarryEl.innerHTML = markup);
 }
