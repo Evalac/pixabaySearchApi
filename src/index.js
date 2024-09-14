@@ -23,13 +23,19 @@ console.log(pixabayApiService);
 
 function onSearch(evt) {
   evt.preventDefault();
+  clearContainer();
 
   const formData = new FormData(evt.currentTarget);
   pixabayApiService.query = formData.get('searchQuery');
 
+  refs.loadMoreBtn.classList.add('hidden');
   pixabayApiService
     .getSearchPixabay()
-    .then(data => createMarkup([data], refs.galarryEl));
+    .then(data => {
+      createMarkup([data], refs.galarryEl);
+      refs.loadMoreBtn.classList.remove('hidden');
+    })
+    .catch(error => console.log(error));
 }
 
 function loadMore() {
@@ -37,4 +43,8 @@ function loadMore() {
   pixabayApiService.getSearchPixabay().then(data => {
     createMarkup([data], refs.galarryEl);
   });
+}
+
+function clearContainer(params) {
+  refs.galarryEl.innerHTML = '';
 }

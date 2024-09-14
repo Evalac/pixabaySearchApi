@@ -11,9 +11,10 @@ class PixabayApiService {
     const response = await axios.get(
       `${BASE_URL}?key=45910491-7a91b10438fcd735159f6d92e&q=${this.searchForm}&image_type=photo&orientation=horizontal&safesearch=true&per_page=4&page=${this.page}`
     );
-    if (response.ok) {
-      throw new Error(response.status);
+    if (response.data.total === 0) {
+      throw new Error(`Введіть щось нормальне`);
     }
+
     return response;
   }
 
