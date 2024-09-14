@@ -1,5 +1,7 @@
 import { createMarkup } from './helpers/createMarkup';
 import { PixabayApiService } from './helpers/pixabayApiService';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const options = {
   key: `45910491-7a91b10438fcd735159f6d92e`,
@@ -19,7 +21,11 @@ refs.formEl.addEventListener('submit', onSearch);
 refs.loadMoreBtn.addEventListener('click', loadMore);
 
 const pixabayApiService = new PixabayApiService();
-console.log(pixabayApiService);
+
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 
 function onSearch(evt) {
   evt.preventDefault();
@@ -34,6 +40,7 @@ function onSearch(evt) {
     .then(data => {
       createMarkup([data], refs.galarryEl);
       refs.loadMoreBtn.classList.remove('hidden');
+      lightbox.refresh();
     })
     .catch(error => console.log(error));
 }
@@ -42,6 +49,7 @@ function loadMore() {
   pixabayApiService.incrementPage();
   pixabayApiService.getSearchPixabay().then(data => {
     createMarkup([data], refs.galarryEl);
+    lightbox.refresh();
   });
 }
 

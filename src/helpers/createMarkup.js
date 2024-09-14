@@ -10,7 +10,8 @@ function createMarkup(data, domEl) {
           views,
           comments,
           downloads,
-        }) => `<div class="photo-card">
+        }) => `<a href="${largeImageURL}" class="gallery__item"> 
+        <div class="photo-card">
   <img src="${webformatURL}" alt="" loading="lazy" />
   <div class="info">
     <p class="info-item">
@@ -30,7 +31,7 @@ function createMarkup(data, domEl) {
       ${downloads}
     </p>
   </div>
-</div>`
+</div>  </a>`
       )
       .join('')
   );
