@@ -35,7 +35,7 @@ function createMarkup(data, domEl) {
       .join('')
   );
 
-  return (domEl.innerHTML = markup);
+  return domEl.insertAdjacentHTML('beforeend', markup);
 }
 
 export { createMarkup };
