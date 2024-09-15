@@ -1,5 +1,8 @@
 import { createMarkup } from './helpers/createMarkup';
 import { PixabayApiService } from './helpers/pixabayApiService';
+import { scrollGallery } from './helpers/scrollGallery';
+import { clearContainer } from './helpers/clearContainer';
+
 import SimpleLightbox from 'simplelightbox';
 import Notiflix from 'notiflix';
 import 'simplelightbox/dist/simple-lightbox.min.css';
@@ -27,7 +30,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
 
 function onSearch(evt) {
   evt.preventDefault();
-  clearContainer();
+  clearContainer(refs.galarryEl);
 
   const formData = new FormData(evt.currentTarget);
   pixabayApiService.query = formData.get('searchQuery');
@@ -52,20 +55,5 @@ function loadMore() {
     createMarkup([data], refs.galarryEl);
     scrollGallery();
     lightbox.refresh();
-  });
-}
-
-function clearContainer(params) {
-  refs.galarryEl.innerHTML = '';
-}
-
-function scrollGallery() {
-  const { height: cardHeight } = document
-    .querySelector('.gallery')
-    .firstElementChild.getBoundingClientRect();
-
-  window.scrollBy({
-    top: cardHeight * 2,
-    behavior: 'smooth',
   });
 }
