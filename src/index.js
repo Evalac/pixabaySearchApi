@@ -50,6 +50,7 @@ function loadMore() {
   pixabayApiService.incrementPage();
   pixabayApiService.getSearchPixabay().then(data => {
     createMarkup([data], refs.galarryEl);
+    scrollGallery();
     lightbox.refresh();
   });
 }
@@ -58,4 +59,13 @@ function clearContainer(params) {
   refs.galarryEl.innerHTML = '';
 }
 
-console.log();
+function scrollGallery() {
+  const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
+}
