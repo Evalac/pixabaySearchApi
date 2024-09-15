@@ -45,6 +45,7 @@ a {
 
 .info {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 15px;
   background-color: #f9f9f9;
@@ -77,4 +78,22 @@ a {
 
 .hidden {
   display: none;
+}
+/* Стилі для кнопки "Load more" */
+.load-more {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.load-more:hover {
+  background-color: #218838; /* Темніший відтінок при наведенні */
+  transform: scale(1.05); /* Легке збільшення кнопки при наведенні */
 }

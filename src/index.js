@@ -1,7 +1,13 @@
 import { createMarkup } from './helpers/createMarkup';
 import { PixabayApiService } from './helpers/pixabayApiService';
 import SimpleLightbox from 'simplelightbox';
+import Notiflix from 'notiflix';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+
+Notiflix.Notify.init({
+  position: 'center-top',
+  distance: '40px',
+});
 
 const options = {
   key: `45910491-7a91b10438fcd735159f6d92e`,
@@ -38,6 +44,7 @@ function onSearch(evt) {
   pixabayApiService
     .getSearchPixabay()
     .then(data => {
+      Notiflix.Notify.success(`Hooray! We found totalHits images`);
       createMarkup([data], refs.galarryEl);
       refs.loadMoreBtn.classList.remove('hidden');
       lightbox.refresh();
@@ -56,3 +63,5 @@ function loadMore() {
 function clearContainer(params) {
   refs.galarryEl.innerHTML = '';
 }
+
+console.log();
