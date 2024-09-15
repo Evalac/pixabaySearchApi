@@ -9,14 +9,6 @@ Notiflix.Notify.init({
   distance: '40px',
 });
 
-const options = {
-  key: `45910491-7a91b10438fcd735159f6d92e`,
-  q: `cat`,
-  image_type: 'photo',
-  orientation: 'horizontal',
-  safesearch: true,
-};
-
 const refs = {
   formEl: document.querySelector('#search-form'),
   galarryEl: document.querySelector('.gallery'),

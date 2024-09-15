@@ -14,9 +14,19 @@ class PixabayApiService {
   }
 
   async getSearchPixabay() {
-    const response = await axios.get(
-      `${BASE_URL}?key=45910491-7a91b10438fcd735159f6d92e&q=${this.searchForm}&image_type=photo&orientation=horizontal&safesearch=true&per_page=10&page=${this.page}`
-    );
+    const options = {
+      params: {
+        key: '45910491-7a91b10438fcd735159f6d92e', // API ключ
+        q: this.searchForm, // Пошуковий запит
+        image_type: 'photo', // Тип зображення
+        orientation: 'horizontal', // Орієнтація зображень
+        safesearch: true, // Безпечний пошук
+        per_page: 10, // Кількість зображень на сторінку
+        page: this.page, // Номер сторінки
+      },
+    };
+
+    const response = await axios.get(`${BASE_URL}`, options);
     if (response.data.total === 0) {
       throw new Error(
         Notiflix.Notify.failure(
