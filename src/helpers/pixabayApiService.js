@@ -35,6 +35,8 @@ class PixabayApiService {
       );
     }
 
+    console.log(response);
+
     return response;
   }
 

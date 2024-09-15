@@ -36,7 +36,9 @@ function onSearch(evt) {
   pixabayApiService
     .getSearchPixabay()
     .then(data => {
-      Notiflix.Notify.success(`Hooray! We found totalHits images`);
+      Notiflix.Notify.success(
+        `Hooray! We found totalHits ${data.data.totalHits} images`
+      );
       createMarkup([data], refs.galarryEl);
       refs.loadMoreBtn.classList.remove('hidden');
       lightbox.refresh();
