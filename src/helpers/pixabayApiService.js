@@ -21,7 +21,7 @@ class PixabayApiService {
         image_type: 'photo', // Тип зображення
         orientation: 'horizontal', // Орієнтація зображень
         safesearch: true, // Безпечний пошук
-        per_page: 10, // Кількість зображень на сторінку
+        per_page: 12, // Кількість зображень на сторінку
         page: this.page, // Номер сторінки
       },
     };
